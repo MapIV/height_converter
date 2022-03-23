@@ -1,0 +1,4 @@
+#ifndef M4_HEIGHT_CONVERTER_HPP
+#define M4_HEIGHT_CONVERTER_HPP
+
+#endif
