@@ -3,7 +3,7 @@ project(height_converter)
 
 find_package(catkin REQUIRED COMPONENTS)
 
-find_pacakge(PkgConfig)
+find_package(PkgConfig)
 find_path(GeographicLib INCLUDE_DIR GeographicLib/config.h
   PATH_SUFFIXES GeographicLib
 )
@@ -24,6 +24,12 @@ link_directories(
   /usr/local/lib
 )
 
-add_library(gnss
+add_library(height_converter SHARED
   src/height_converter.cpp
+  src/gsigeo.cpp
 )
+target_link_libraries(height_converter PUBLIC ${catkin_LIBRARIES} Geographic)
+
+add_executable(test src/test.cpp)
+target_link_libraries(test ${catkin_LIBRARIES} height_converter)
+add_dependencies(test ${catkin_EXPORTED_TARGETS})
