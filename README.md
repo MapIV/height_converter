@@ -50,3 +50,6 @@ This package contains GSIGEO2011 geoid data file which is provided by Geospatial
 
 [Official Website of Geospatial Information Authority of Japan](https://fgd.gsi.go.jp/download/geoid.php)
 
+## LICENSE
+
+This package is provided under the [BSD 3-Clauses](LICENSE) License.
