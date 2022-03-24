@@ -12,11 +12,11 @@ HeightConverter::~HeightConverter()
 {
 }
 
-void HeightConverter::setLLH(const double& lat, const double& lon, const double& h)
+double HeightConverter::convertHeight(const double& lat, const double& lon, const double& h, const ConvertType& type)
 {
-  lat_ = lat;
-  lon_ = lon;
-  h_ = h;
+  double geoid_height = getGeoid(lat, lon);
+  
+  return h + geoid_height * type;
 }
 
 void HeightConverter::setGeoidType(const GeoidType& geoid_type)

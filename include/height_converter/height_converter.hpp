@@ -26,15 +26,13 @@ class HeightConverter
 public:
   HeightConverter();
   ~HeightConverter();
-  void setLLH(const double& lat, const double& lon, const double& h);
+  double convertHeight(const double& lat, const double& lon, const double& h, const ConvertType& type);
   void setGeoidType(const GeoidType& geoid_type);
   double getGeoid(const double& lat, const double& lon);
   void setGSIGEOGeoidFile(const std::string& geoid_file);
   void setGSIGEOGeoidFile();
 
 private:
-  // LLH
-  double lat_, lon_, h_;
   // Geoid type
   GeoidType geoid_type_ = GeoidType::EGM2008;
   // Flag

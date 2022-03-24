@@ -52,5 +52,9 @@ int main(int argc, char** argv)
   std::cout << "Testing (" << std::setw(6) << 26.6 << ", " << std::setw(6) << 128.1 << ") ... ";
   test(hc.getGeoid(26.6, 128.1), 32.2696);
 
+  // convertHeight Test
+  test(hc.convertHeight(35, 135, 0, height_converter::ConvertType::ORTHO2ELLIPS), 37.0557);
+  test(hc.convertHeight(35, 135, 0, height_converter::ConvertType::ELLIPS2ORTHO), -37.0557);
+
   return 0;
 }
