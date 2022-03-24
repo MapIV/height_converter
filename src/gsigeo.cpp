@@ -89,8 +89,10 @@ double GSIGEO2011::getGeoid(const double& lat, const double& lon)
   const int j_lat = i_lat + 1;
   const int j_lon = i_lon + 1;
 
-  const double t = (((lat - lat_min) / d_lat) - i_lat) / d_lat;
-  const double u = (((lon - lon_min) / d_lon) - i_lon) / d_lon;
+  // const double t = (((lat - lat_min) / d_lat) - i_lat) / d_lat;
+  // const double u = (((lon - lon_min) / d_lon) - i_lon) / d_lon;
+  const double t = (lat - (lat_min + i_lat * d_lat)) / d_lat;
+  const double u = (lon - (lon_min + i_lon * d_lon)) / d_lon;
 
   if (i_lat < 0 || i_lat >= row_size_ - 1 || i_lon < 0 || i_lon >= column_size_ - 1)
   {
@@ -108,49 +110,5 @@ double GSIGEO2011::getGeoid(const double& lat, const double& lon)
   double geoid = (1-t)*(1-u)*geoid_map_[i_lat][i_lon] + (1-t)*u*geoid_map_[i_lat][j_lon] + t*(1-u)*geoid_map_[j_lat][i_lon] + t*u*geoid_map_[j_lat][j_lon];
 
   return geoid;
-  // if (xx < 1e-5) iadx = 0;
-  // else if ((1 - xx) < 1e-5) iadx = 1;
-
-  // if (yy < 1e-5) iady = 0;
-  // else if ((1 - yy) < 1e-5) iady = 1;
-
-  // if (iady >= 0)
-  // {
-  //   if (iadx >= 0)
-  //   {
-  //     return geoid_map_[i_lat + iady][i_lon + iadx];
-  //   }
-  //   else if (geoid_map_[i_lat + iady][i_lon] == 999.000 || geoid_map_[i_lat + iady][j_lon] == 999.000)
-  //   {
-  //     return 999.000;
-  //   }
-  //   else
-  //   {
-  //     return (1 - x) * geoid_map_[i_lat + iady][i_lon] + x * geoid_map_[i_lat + iady][j_lon];
-  //   }
-  // }
-  // else
-  // {
-  //   if (iadx >= 0)
-  //   {
-  //     if (geoid_map_[i_lat][i_lon + iadx] == 999.000 || geoid_map_[j_lat][i_lon + iadx] == 999.000)
-  //     {
-  //       return 999.000;
-  //     }
-  //     else
-  //     {
-  //       return (1 - y) * geoid_map_[i_lat][i_lon + iadx] + y * geoid_map_[j_lat][i_lon + iadx];
-  //     }
-  //   }
-  // }
-
-  // if (geoid_map_[j_lat][i_lon] == 999.000 || geoid_map_[j_lat][j_lon] == 999.000 || geoid_map_[i_lat][i_lon] == 999.000 || geoid_map_[i_lat][j_lon] == 999.000)
-  // {
-  //   return 999.000;
-  // }
-  // else
-  // {
-  //   return (1 - x) * (1 - y) * geoid_map_[i_lat][i_lon] + y * (1 - x) * geoid_map_[j_lat][i_lon] + x * (1 - y) * geoid_map_[i_lat][j_lon] + x * y * geoid_map_[j_lat][j_lon];
-  // }
 }
 }   // namespace height_converter

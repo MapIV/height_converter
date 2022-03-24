@@ -40,6 +40,11 @@ void HeightConverter::setGSIGEOGeoidFile(const std::string& geoid_file)
   gsigeo2011_.loadGeoidMap(geoid_file);
 }
 
+void HeightConverter::setGSIGEOGeoidFile()
+{
+  gsigeo2011_.loadGeoidMap("/usr/share/GSIGEO/gsigeo2011_ver2_1.asc");
+}
+
 double HeightConverter::getGeoidEGM2008(const double& lat, const double& lon)
 {
   try

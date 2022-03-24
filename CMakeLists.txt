@@ -30,6 +30,6 @@ add_library(height_converter SHARED
 )
 target_link_libraries(height_converter PUBLIC ${catkin_LIBRARIES} Geographic)
 
-add_executable(test src/test.cpp)
+add_executable(test test/utest.cpp)
 target_link_libraries(test ${catkin_LIBRARIES} height_converter)
 add_dependencies(test ${catkin_EXPORTED_TARGETS})

@@ -30,6 +30,7 @@ public:
   void setGeoidType(const GeoidType& geoid_type);
   double getGeoid(const double& lat, const double& lon);
   void setGSIGEOGeoidFile(const std::string& geoid_file);
+  void setGSIGEOGeoidFile();
 
 private:
   // LLH
